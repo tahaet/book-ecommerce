@@ -4,7 +4,7 @@ const categorySchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Category Name is required'],
-    maxlength: [30, 'Category Name cannot exceed 30 characters'],
+    maxLength: [30, 'Category Name cannot exceed 30 characters'],
   },
   displayOrder: {
     type: Number,
