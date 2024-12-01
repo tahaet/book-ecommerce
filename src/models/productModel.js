@@ -24,19 +24,21 @@ const productSchema = new mongoose.Schema({
     max: [1000, 'Price cannot exceed 1000'],
   },
 
-  categoryId: {
+  category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'category',
+    ref: 'Category',
     required: true,
   },
-  productImages: [
-    {
-      type: String,
-      default: '/public/img/products/default.jpg',
-    },
-  ],
+  productImages: {
+    type: [String],
+    default: ['/public/img/products/default.jpg'],
+  },
 });
-
+// in arrow syntax this doesn't point to current document
+productSchema.pre(/^find/, function (next) {
+  this.populate({ path: 'category', select: 'name displayOrder' });
+  next();
+});
 const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;
