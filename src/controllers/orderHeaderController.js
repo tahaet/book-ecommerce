@@ -122,20 +122,19 @@ exports.validateStripeSession = catchAsync(async (req, res, next) => {
   const order = await OrderHeader.findById(req.params.orderId);
   const session = await stripe.checkout.sessions.retrieve(order.sessionId);
   if (session.payment_status === 'paid') {
-    await OrderHeader.findByIdAndUpdate(order._id, {
-      paymentIntentId: session.payment_intent,
-      paymentDate: new Date(),
-      orderStatus: sd.StatusApproved,
-      paymentStatus: sd.PaymentStatusApproved,
-    });
+    order.paymentIntentId = session.payment_intent;
+    order.paymentDate = new Date();
+    order.orderStatus = sd.StatusApproved;
+    order.paymentStatus = sd.PaymentStatusApproved;
+    await order.save();
     res.status(200).json({
       message: 'success',
       session: session,
     });
   } else {
     res.status(404).json({
-      message: 'fail',
-      session: session,
+      message: "You didn't pay for this order, please pay for order first!",
+      payment_link: session.url,
     });
   }
 });
