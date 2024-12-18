@@ -7,13 +7,10 @@ This is a **RESTful API** for a Book E-Commerce platform, developed using **Node
 ## Table of Contents
 
 - [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [Setup and Installation](#setup-and-installation)
 - [Security Measures](#security-measures)
-- [Environment Variables](#environment-variables)
-- [Testing](#testing)
-- [License](#license)
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
 
 ---
 
@@ -141,34 +138,6 @@ book-ecommerce/
 
 ---
 
-## Environment Variables
 
-Set the following variables in your `.env` file:
-
-```env
-PORT=3000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRES_IN=1d
-STRIPE_SECRET_KEY=your_stripe_secret_key
-EMAIL_HOST=your_email_host
-EMAIL_PORT=your_email_port
-EMAIL_USERNAME=your_email_username
-EMAIL_PASSWORD=your_email_password
-```
-
----
-
-## Testing
-
-- **Unit Tests**: Validate individual components like controllers and middleware.
-- **Integration Tests**: Test the interaction between modules.
-
-To run tests, execute:
-```bash
-npm test
-```
-
----
 
 
