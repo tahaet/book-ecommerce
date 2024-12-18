@@ -129,11 +129,6 @@ book-ecommerce/
    ```
    The server will run at `http://localhost:3000`.
 
-5. **Run Tests**
-   To run the unit and integration tests:
-   ```bash
-   npm test
-   ```
 
 ---
 
