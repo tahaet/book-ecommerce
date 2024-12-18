@@ -16,6 +16,7 @@ This is a **RESTful API** for a Book E-Commerce platform, developed using **Node
   - [Payments](#payments)
 - [Security Measures](#security-measures)
 - [Environment Variables](#environment-variables)
+- [Testing](#testing)
 - [License](#license)
 
 ---
@@ -47,12 +48,15 @@ This is a **RESTful API** for a Book E-Commerce platform, developed using **Node
 7. **Security Measures**:
    - Protection against common vulnerabilities such as XSS, HPP, and brute-force attacks using middleware like **Helmet**, **XSS-Clean**, and **Express-Rate-Limit**.
 
+8. **Unit and Integration Testing**:
+   - Comprehensive test coverage for routes, controllers, and middleware.
+
 ---
 
 ## Technologies Used
 
 - **Node.js** (v22)
-- **Express** (Framework)
+- **Express** 
 - **MongoDB** with **Mongoose** (Data Storage)
 - **Stripe** (Payment Gateway)
 - **JWT** (Authentication)
@@ -61,6 +65,7 @@ This is a **RESTful API** for a Book E-Commerce platform, developed using **Node
 - **Helmet**, **XSS-Clean**, and **Rate Limiting** (Security)
 - **Morgan** (Logging)
 - **Nodemailer** (Email Services)
+- **Jest** and **Supertest** (Testing Frameworks)
 
 ---
 
@@ -68,7 +73,7 @@ This is a **RESTful API** for a Book E-Commerce platform, developed using **Node
 
 ```plaintext
 book-ecommerce/
-│
+├── public/                 # Public assets
 ├── src/
 │   ├── config/            # Configuration files (e.g., DB connection, Stripe setup)
 │   ├── controllers/       # Route controllers for handling requests
@@ -76,7 +81,7 @@ book-ecommerce/
 │   ├── routes/            # API routes
 │   ├── middleware/        # Custom middleware (auth, error handling, etc.)
 │   ├── utils/             # Utility functions (email, pagination, etc.)
-│   ├── public/            # Public assets
+│   ├── tests/             # Unit and integration tests
 │   └── server.js          # Entry point of the application
 │
 ├── .env                   # Environment variables
@@ -122,82 +127,11 @@ book-ecommerce/
    ```
    The server will run at `http://localhost:3000`.
 
----
-
-## API Documentation
-
-### Authentication
-
-1. **Register a User**
-   - `POST /api/v1/auth/register`
-   - Request Body:
-     ```json
-     {
-       "name": "John Doe",
-       "email": "john@example.com",
-       "password": "password123",
-       "role": "user"
-     }
-     ```
-
-2. **Login**
-   - `POST /api/v1/auth/login`
-   - Request Body:
-     ```json
-     {
-       "email": "john@example.com",
-       "password": "password123"
-     }
-     ```
-
----
-
-### Books
-
-1. **Get All Books** (With Filtering, Sorting, and Pagination)
-   - `GET /api/v1/books`
-   - Query Parameters:
-     - Filtering: `?price[gte]=10&category=fiction`
-     - Sorting: `?sort=price,-title`
-     - Pagination: `?page=2&limit=10`
-   - Example Response:
-     ```json
-     {
-       "status": "success",
-       "results": 10,
-       "data": {
-         "books": [ /* Array of books */ ]
-       }
-     }
-     ```
-
-2. **Create a Book** (Admin only)
-   - `POST /api/v1/books`
-   - Request Body:
-     ```json
-     {
-       "title": "Book Title",
-       "author": "Author Name",
-       "price": 19.99,
-       "category": "fiction"
-     }
-     ```
-
----
-
-### Payments
-
-1. **Checkout with Stripe**
-   - `POST /api/v1/payments/checkout`
-   - Request Body:
-     ```json
-     {
-       "amount": 1999,
-       "currency": "usd",
-       "description": "Purchase of Book Title",
-       "source": "tok_mastercard"
-     }
-     ```
+5. **Run Tests**
+   To run the unit and integration tests:
+   ```bash
+   npm test
+   ```
 
 ---
 
@@ -225,6 +159,18 @@ EMAIL_HOST=your_email_host
 EMAIL_PORT=your_email_port
 EMAIL_USERNAME=your_email_username
 EMAIL_PASSWORD=your_email_password
+```
+
+---
+
+## Testing
+
+- **Unit Tests**: Validate individual components like controllers and middleware.
+- **Integration Tests**: Test the interaction between modules.
+
+To run tests, execute:
+```bash
+npm test
 ```
 
 ---
