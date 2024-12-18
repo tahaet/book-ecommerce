@@ -46,7 +46,16 @@ This is a **RESTful API** for a Book E-Commerce platform, developed using **Node
 
 ---
 
+## Security Measures
+
+- **Helmet**: Secures HTTP headers.
+- **XSS-Clean**: Sanitizes user input against XSS attacks.
+- **Express-Rate-Limit**: Limits repeated requests to prevent brute-force attacks.
+- **HPP**: Prevents HTTP parameter pollution.
+- **JWT Authentication**: Ensures secure access to protected routes.
 ## Technologies Used
+
+---
 
 - **Node.js** (v22)
 - **Express** 
@@ -128,13 +137,7 @@ book-ecommerce/
 
 ---
 
-## Security Measures
 
-- **Helmet**: Secures HTTP headers.
-- **XSS-Clean**: Sanitizes user input against XSS attacks.
-- **Express-Rate-Limit**: Limits repeated requests to prevent brute-force attacks.
-- **HPP**: Prevents HTTP parameter pollution.
-- **JWT Authentication**: Ensures secure access to protected routes.
 
 ---
 
